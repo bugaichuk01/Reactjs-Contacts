@@ -1,0 +1,74 @@
+{
+  "user": {
+    "email": "nazar",
+    "password": "111"
+  },
+  "contacts": [
+    {
+      "id": 212312313,
+      "name": "Mariya",
+      "email": "mariya@mail.ru",
+      "phone": "+79772008972"
+    },
+    {
+      "id": 343453453,
+      "name": "Vadim",
+      "email": "va@mail.com",
+      "phone": "+79664009928"
+    },
+    {
+      "id": 46456457324,
+      "name": "Kim",
+      "email": "ka@mail.ru",
+      "phone": "+79123009928"
+    },
+    {
+      "id": 1660034847646,
+      "name": "Nazar",
+      "email": "dog@mail.ru",
+      "phone": "89771882743"
+    },
+    {
+      "id": 1660034944061,
+      "name": "Kolyan",
+      "email": "kk@mail.ru",
+      "phone": "9888299132"
+    },
+    {
+      "id": 1660035000286,
+      "name": "test",
+      "email": "test@mail.ru",
+      "phone": "8977266182"
+    },
+    {
+      "id": 1660035086141,
+      "name": "kok",
+      "email": "kok@mail.ru",
+      "phone": "89002991212"
+    },
+    {
+      "id": 1660035852760,
+      "name": "ljlks",
+      "email": "HF@mail.ru",
+      "phone": "123123123123"
+    },
+    {
+      "id": 1660128953500,
+      "name": "hhH",
+      "email": "HF@mail.ru",
+      "phone": "89002991212"
+    },
+    {
+      "id": 1660130560186,
+      "name": "asd",
+      "email": "dd@mail.ru",
+      "phone": "1234"
+    },
+    {
+      "id": 1660206720334,
+      "name": "test",
+      "email": "test@mail.ru",
+      "phone": "89999999999"
+    }
+  ]
+}
