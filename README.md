@@ -10,3 +10,4 @@ npm install
 npm run server
 npm start
 ```
+node v14.17.4
