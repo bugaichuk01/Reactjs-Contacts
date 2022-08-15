@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {useActions} from "../../_hooks/useActions";
 import {Button, Container, TextField} from "@mui/material";
+import {useTypedDispatch} from "../../_hooks/redux";
+import {contactsSlice} from "../../store/reducers/contactsSlice";
 
 const SearchGroup = () => {
+    const dispatch = useTypedDispatch();
     const [search, setSearch] = useState<string>('')
-    const {searchContact} = useActions();
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
@@ -12,7 +13,7 @@ const SearchGroup = () => {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        searchContact(search);
+        dispatch(contactsSlice.actions.searchContact(search));
     }
 
     return (
