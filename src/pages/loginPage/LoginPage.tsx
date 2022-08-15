@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import {useActions} from "../../_hooks/useActions";
-import {useTypedSelector} from "../../_hooks/useTypedSelector";
+import {useTypedDispatch, useTypedSelector} from "../../_hooks/redux";
 import {Alert, Button, Container, TextField} from "@mui/material";
+import {login} from '../../store/actions/authActions';
 
 function LoginPage() {
+    const dispatch = useTypedDispatch();
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    const {login} = useActions()
-    const {error} = useTypedSelector(state => state.auth)
+    const {error} = useTypedSelector(state => state.authReducer)
 
     function emailChange(e: React.ChangeEvent<HTMLInputElement>) {
         setEmail(e.target.value)
@@ -19,7 +19,7 @@ function LoginPage() {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        login(email, password);
+        dispatch(login(email, password));
     }
 
     return (
