@@ -1,8 +1,18 @@
-import {applyMiddleware, createStore} from "redux";
-import {composeWithDevTools} from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import {rootReducer} from "./reducers";
+import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import authReducer from "./reducers/authSlice";
+import contactsReducer from "./reducers/contactsSlice";
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const rootReducer = combineReducers({
+    authReducer,
+    contactsReducer
+})
 
-export default store;
+export const setupStore = () => {
+    return configureStore({
+        reducer: rootReducer
+    })
+}
+
+export type RootState = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch']
