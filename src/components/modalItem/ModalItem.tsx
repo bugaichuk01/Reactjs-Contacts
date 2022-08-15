@@ -21,7 +21,6 @@ interface IModal {
 }
 
 const ModalItem: React.FC<IModal> = ({btnText, contact, func}) => {
-    const [show, setShow] = useState<boolean>(false);
     const [formData, setFormData] = useState<IContact>(
         contact ? {...contact} :
             {
@@ -31,7 +30,7 @@ const ModalItem: React.FC<IModal> = ({btnText, contact, func}) => {
                 phone: ''
             });
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState<boolean>(false);
     const handleShow = () => setOpen(!open);
 
     const onFormDataChange = (event: React.ChangeEvent<HTMLInputElement>) => setFormData({
@@ -41,7 +40,7 @@ const ModalItem: React.FC<IModal> = ({btnText, contact, func}) => {
 
     const onSubmit = () => {
         func({...formData})
-        setShow(false);
+        setOpen(false);
         setFormData({
             id: Date.now(),
             name: '',
