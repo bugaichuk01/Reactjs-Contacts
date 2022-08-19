@@ -9,7 +9,7 @@ export const fetchContacts = () => {
     return async (dispatch: AppDispatch) => {
         try {
             dispatch(contactsSlice.actions.fetchContacts());
-            const response = await axios.get(_URL);
+            const response = await axios.get<IContact[]>(_URL);
             dispatch(contactsSlice.actions.fetchContactsSuccess(response.data));
         } catch (e) {
             dispatch(contactsSlice.actions.fetchContactsError('Error'));
