@@ -1,5 +1,6 @@
 import {IAuthState} from "../../types/Auth";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {login} from "../actions/authActions";
 
 const initialState: IAuthState = {
     auth: false,
@@ -9,17 +10,17 @@ const initialState: IAuthState = {
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {
-        fetchUser(state) {
-            state.loading = true
-        },
-        fetchUserSuccess(state, action: PayloadAction<boolean>) {
-            state.auth = action.payload
-        },
-        fetchUserError(state, action: PayloadAction<string>) {
-            state.error = action.payload
-        }
-    }
-})
+    reducers: {},
+    extraReducers(builder) {
+        builder.addCase(login.fulfilled, (state, action: PayloadAction<boolean>) => {
+            state.auth = action.payload;
+        })
+        builder.addCase(login.pending, (state) => {
+            state.loading= true;
+        })
+        builder.addCase(login.rejected, (state) => {
+            state.error = 'Логин/пароль неверен';
+        })
+}})
 
 export default authSlice.reducer
