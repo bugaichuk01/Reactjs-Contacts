@@ -11,7 +11,7 @@ const ContactsList = () => {
 
     useEffect(() => {
         dispatch(fetchContacts());
-    }, [])
+    }, [dispatch])
 
     return (
         <Container>
