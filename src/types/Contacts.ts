@@ -6,8 +6,8 @@ export interface IContact {
 }
 
 export interface ContactsState {
-    contacts: IContact[],
-    filtered: IContact[],
+    contacts: IContact[] | null;
+    filtered: IContact[] | null;
     loading: boolean;
-    error: string;
+    error: string | undefined;
 }
