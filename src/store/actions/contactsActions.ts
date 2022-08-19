@@ -1,48 +1,53 @@
 import {IContact} from "../../types/Contacts";
 import axios from "axios";
-import {AppDispatch} from "../store";
-import {contactsSlice} from "../reducers/contactsSlice";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 
 const _URL: string = 'http://localhost:3001/contacts';
 
-export const fetchContacts = () => {
-    return async (dispatch: AppDispatch) => {
+export const fetchContacts = createAsyncThunk(
+    'contacts/fetchContacts',
+    async (_, thunkAPI) => {
         try {
-            dispatch(contactsSlice.actions.fetchContacts());
-            const response = await axios.get<IContact[]>(_URL);
-            dispatch(contactsSlice.actions.fetchContactsSuccess(response.data));
+            const response = await axios.get(_URL);
+            return response.data;
         } catch (e) {
-            dispatch(contactsSlice.actions.fetchContactsError('Error'));
+            return thunkAPI.fulfillWithValue('Не удалось загрузить контакты')
         }
     }
-}
+)
 
-export const addContact = (payload: IContact) => {
-    return async (dispatch: AppDispatch) => {
+export const addContact = createAsyncThunk(
+    'contacts/addContact',
+    async (contact: IContact, thunkAPI) => {
         try {
-            await axios.post(_URL, payload).then(() => dispatch(contactsSlice.actions.addContact(payload)));
+            const response = await axios.post(_URL, contact);
+            return response.data;
         } catch (e) {
-            dispatch(contactsSlice.actions.fetchContactsError('Error'))
+            return thunkAPI.fulfillWithValue('Не удалось загрузить контакты')
         }
     }
-}
+)
 
-export const editContact = (payload: IContact) => {
-    return async (dispatch: AppDispatch) => {
+export const editContact = createAsyncThunk(
+    'contacts/editContact',
+    async (contact: IContact, thunkAPI) => {
         try {
-            await axios.put(`${_URL}/${payload.id}`, payload).then(() => dispatch(contactsSlice.actions.editContact(payload)));
+            const response = await axios.put(`${_URL}/${contact.id}`, contact);
+            return response.data;
         } catch (e) {
-            dispatch(contactsSlice.actions.fetchContactsError('Error'))
+            return thunkAPI.fulfillWithValue('Не удалось загрузить контакты')
         }
     }
-}
+)
 
-export const deleteContact = (payload: number) => {
-    return async (dispatch: AppDispatch) => {
+export const deleteContact = createAsyncThunk(
+    'contacts/deleteContact',
+    async (contact: number, thunkAPI) => {
         try {
-            await axios.delete(`${_URL}/${payload}`).then(() => dispatch(contactsSlice.actions.deleteContact(payload)));
+            const response = await axios.delete(`${_URL}/${contact}`);
+            return response.data;
         } catch (e) {
-            dispatch(contactsSlice.actions.fetchContactsError('Error'))
+            return thunkAPI.fulfillWithValue('Не удалось загрузить контакты')
         }
     }
-}
+)
