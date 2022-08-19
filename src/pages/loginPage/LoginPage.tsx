@@ -19,7 +19,7 @@ function LoginPage() {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(login(email, password));
+        dispatch(login({email, password}));
     }
 
     return (
